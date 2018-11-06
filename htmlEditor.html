@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>html代码编辑器</title>
+    <link rel="stylesheet" href="./lib/codemirror.css">
+    <!-- <link rel="stylesheet" href="./theme/night.css"> -->
+    <script src="./lib/codemirror.js"></script>
+    <!-- <script src="./lib/javascript.js"></script> -->
+    <script src="./lib/xml.js"></script>
+</head>
+
+<body>
+    <textarea id="code" name="code">
+        <dt id="option_indentWithTabs"><code><strong>indentWithTabs</strong>: boolean</code></dt>
+        <dd>Whether, when indenting, the first N*<code>tabSize</code>
+        spaces should be replaced by N tabs. Default is false.</dd>
+      
+        <dt id="option_electricChars"><code><strong>electricChars</strong>: boolean</code></dt>
+        <dd>Configures whether the editor should re-indent the current
+        line when a character is typed that might change its proper
+        indentation (only works if the mode supports indentation).
+        Default is true.</dd>
+      
+        <dt id="option_specialChars"><code><strong>specialChars</strong>: RegExp</code></dt>
+        <dd>A regular expression used to determine which characters
+        should be replaced by a
+        special <a href="#option_specialCharPlaceholder">placeholder</a>.
+        Mostly useful for non-printing special characters. The default
+        is <code>/[\u0000-\u0019\u00ad\u200b\u2028\u2029\ufeff]/</code>.</dd>
+        <dt id="option_specialCharPlaceholder"><code><strong>specialCharPlaceholder</strong>: function(char) → Element</code></dt>
+        <dd>A function that, given a special character identified by
+        the <a href="#option_specialChars"><code>specialChars</code></a>
+        option, produces a DOM node that is used to represent the
+        character. By default, a red dot (<span style="color: red">•</span>)
+        is shown, with a title tooltip to indicate the character code.</dd>
+      
+        <dt id="option_rtlMoveVisually"><code><strong>rtlMoveVisually</strong>: boolean</code></dt>
+        <dd>Determines whether horizontal cursor movement through
+        right-to-left (Arabic, Hebrew) text is visual (pressing the left
+        arrow moves the cursor left) or logical (pressing the left arrow
+        moves to the next lower index in the string, which is visually
+        right in right-to-left text). The default is <code>false</code>
+        on Windows, and <code>true</code> on other platforms.</dd>
+      </dl>
+    </textarea>
+    <script>
+        var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+            lineNumbers: true,
+            styleActiveLine: true,
+            matchBrackets: true,
+            // mode:'text/html',// 模式
+            // theme : "night",  // CSS样式选择
+            indentUnit : 2,  // 缩进单位，默认2
+            smartIndent : true,  // 是否智能缩进
+            tabSize : 4,  // Tab缩进，默认4
+        });
+    </script>
+</body>
+
+</html>
